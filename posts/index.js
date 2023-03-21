@@ -8,6 +8,10 @@ app.use(bodyParser.json());
 
 const posts = {};
 
+app.get("/welcome1", (req, res) => {
+  res.send({ welcome: "welcome" });
+});
+
 app.get("/posts", (req, res) => {
   res.send(posts);
 });
@@ -22,7 +26,7 @@ app.post("/posts", async (req, res) => {
     title,
   };
 
-  await axios.post("http://localhost:3000/event/" + { id }, posts[id]);
+  // await axios.post("http://localhost:3000/event/" + { id }, posts[id]);
 
   res.status(201).send(posts[id]);
 });
