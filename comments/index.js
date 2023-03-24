@@ -30,9 +30,12 @@ app.post("/posts/:id/comments", async (req, res) => {
 
   commentsByPostId[req.params.id] = comments;
 
-  await axios.post("http://localhost:3000/event/" + { post_id }, new_comment);
+  await axios.post(
+    "http://event-bus-clusterip-srv:3000/event/" + post_id,
+    new_comment
+  );
 
-  res.status(201).send(comments);
+  res.status(201).send({ result: "Comment Created" });
 });
 
 app.listen(4002, () => {

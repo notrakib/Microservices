@@ -11,9 +11,9 @@ app.get("/posts", (req, res) => {
 
 app.post("/event/:post_id", async (req, res) => {
   const post_id = req.params.post_id;
-  await axios.post("http://localhost:4000/query/" + post_id, req.body);
-
-  res.status(201).send({ event: "OK" });
+  // await axios.post("http://localhost:4000/query/" + post_id, req.body);
+  console.log(post_id, req.body);
+  res.json({ event: post_id });
 });
 
 app.listen(3000, () => {

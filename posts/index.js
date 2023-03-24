@@ -26,9 +26,12 @@ app.post("/posts", async (req, res) => {
     title,
   };
 
-  // await axios.post("http://localhost:3000/event/" + { id }, posts[id]);
+  const response = await axios.post(
+    "http://event-bus-clusterip-srv:3000/event/" + id,
+    posts[id]
+  );
 
-  res.status(201).send(posts[id]);
+  res.status(201).send({ result: "Post Created" });
 });
 
 app.listen(4001, () => {
