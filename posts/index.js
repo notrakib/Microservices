@@ -5,6 +5,16 @@ const { randomBytes } = require("crypto");
 
 const app = express();
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 const posts = {};
 
@@ -16,7 +26,7 @@ app.get("/posts", (req, res) => {
   res.send(posts);
 });
 
-app.post("/posts", async (req, res) => {
+app.post("/send-posts", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { title } = req.body;
 
