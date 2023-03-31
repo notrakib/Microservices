@@ -26,6 +26,6 @@ app.post("/event/:post_id", async (req, res) => {
   res.json({ event: post_id });
 });
 
-app.listen(3000, () => {
+app.listen(3100, () => {
   console.log("Listening on 3000");
 });
